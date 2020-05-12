@@ -141,3 +141,9 @@ impl ToRaw<Vec2f> for Vector2 {
         [self.x, self.y]
     }
 }
+
+impl From<Vec2f> for Vector2 {
+    fn from(a: Vec2f) -> Self {
+        Vector2::new(a[0], a[1])
+    }
+}

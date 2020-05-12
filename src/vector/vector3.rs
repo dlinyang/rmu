@@ -158,3 +158,9 @@ impl ToRaw<Vec3f> for Vector3 {
         [self.x, self.y, self.z]
     }
 }
+
+impl From<Vec3f> for Vector3 {
+    fn from(a: Vec3f) -> Self {
+        Self::new(a[0], a[1], a[2])
+    }
+}

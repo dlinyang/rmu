@@ -147,3 +147,9 @@ impl ToRaw<Vec4f> for Vector4 {
         [self.x, self.y, self.z, self.w]
     }
 }
+
+impl From<Vec4f> for Vector4 {
+    fn from(a: Vec4f) -> Self {
+        Self::new(a[0], a[1], a[2], a[3])
+    }
+}
