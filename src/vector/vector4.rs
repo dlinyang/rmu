@@ -139,3 +139,11 @@ impl IndexMut<usize> for Vector4 {
         }
     }
 }
+
+use crate::raw::{Vec4f, ToRaw};
+
+impl ToRaw<Vec4f> for Vector4 {
+    fn to_raw(&self) -> Vec4f {
+        [self.x, self.y, self.z, self.w]
+    }
+}
