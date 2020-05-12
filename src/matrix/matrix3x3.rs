@@ -1,4 +1,3 @@
-use crate::raw::{ID3F};
 use std::ops::{Add,Sub,Mul,Div,Neg,Index,IndexMut};
 
 /// 3x3 matrix with 32bit float number
@@ -31,6 +30,8 @@ impl Matrix3x3 {
         self[0][2] * (self[1][0] * self[2][1] - self[1][1] * self[2][0])
     }
 }
+
+use crate::raw::ID3F;
 
 impl Default for Matrix3x3 {
     fn default() -> Self {
@@ -183,5 +184,13 @@ impl Neg for Matrix3x3 {
                   ,[-self[1][0], -self[1][1], -self[1][2]]
                   ,[-self[2][0], -self[2][1], -self[2][2]]],
         }
+    }
+}
+
+use crate::raw::{Mat3f,ToRaw};
+
+impl ToRaw<Mat3f> for Matrix3x3 {
+    fn to_raw(&self) -> Mat3f {
+        self.data
     }
 }

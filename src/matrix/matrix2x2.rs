@@ -1,4 +1,3 @@
-use crate::raw::{ID2F};
 use std::ops::{Add,Sub,Mul,Div,Neg,Index,IndexMut};
 
 /// 2x2 matrix with 32bit float number
@@ -28,6 +27,8 @@ impl Matrix2x2 {
         self[0][0] * self[1][1] - self[0][1] * self[1][1]
     }
 }
+
+use crate::raw::ID2F;
 
 impl Default for Matrix2x2 {
     fn default() -> Self {
@@ -164,5 +165,13 @@ impl Neg for Matrix2x2 {
             data: [[-self[0][0], -self[0][1]]
                   ,[-self[1][0], -self[1][1]]],
         }
+    }
+}
+
+use crate::raw::{Mat2f,ToRaw};
+
+impl ToRaw<Mat2f> for Matrix2x2 {
+    fn to_raw(&self) -> Mat2f {
+        self.data
     }
 }

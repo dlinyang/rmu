@@ -1,4 +1,3 @@
-use crate::raw::{ID4F};
 use std::ops::{Add,Sub,Mul,Div,Neg,Index,IndexMut};
 
 /// 4x4 matrix with 32bit float number
@@ -31,6 +30,8 @@ impl Matrix4x4 {
         unimplemented!()
     }
 }
+
+use crate::raw::ID4F;
 
 impl Default for Matrix4x4 {
     fn default() -> Self {
@@ -201,5 +202,13 @@ impl Neg for Matrix4x4 {
                   ,[-self[2][0], -self[2][1], -self[2][2], -self[2][3]]
                   ,[-self[3][0], -self[3][1], -self[3][2], -self[3][3]]],
         }
+    }
+}
+
+use crate::raw::{Mat4f,ToRaw};
+
+impl ToRaw<Mat4f> for Matrix4x4 {
+    fn to_raw(&self) -> Mat4f {
+        self.data
     }
 }
