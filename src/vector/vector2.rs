@@ -3,7 +3,7 @@ use num::Float;
 use std::ops::{Add,Sub,Mul,Div,Neg,Index,IndexMut};
 
 /// a vector in R² space with 32bit float number
-#[derive(Debug,Copy, Clone, PartialEq, PartialOrd)]
+#[derive(Debug,Copy,Clone,PartialEq,PartialOrd)]
 pub struct Vector2 {
     pub x: f32,
     pub y: f32,
