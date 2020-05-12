@@ -32,3 +32,8 @@ pub const ID4F: Mat4f = [[1.0, 0.0, 0.0, 0.0]
                         ,[0.0, 1.0, 0.0, 0.0]
                         ,[0.0, 0.0, 1.0, 0.0]
                         ,[0.0, 0.0, 0.0, 1.0]];
+
+///into raw type trait
+pub trait ToRaw<T> {
+    fn to_raw(&self) -> T;
+}
