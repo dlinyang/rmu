@@ -3,8 +3,10 @@ name = "rmu"
 version = "0.1.0"
 authors = ["ydl"]
 edition = "2018"
+
 [lib]
-name = "math_utils"
+name = "rmu"
 path = "src/lib.rs"
+
 [dependencies]
 num = "0.2.1"
