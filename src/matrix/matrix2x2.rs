@@ -15,10 +15,6 @@ impl Matrix2x2 {
         }
     }
 
-    pub fn from(data: [[f32;2];2]) -> Self {
-        Self { data }
-    }
-
     pub fn trace(&self) -> f32 {
         self[0][0] + self[1][1]
     }
@@ -168,10 +164,18 @@ impl Neg for Matrix2x2 {
     }
 }
 
-use crate::raw::{Mat2f,ToRaw};
+use crate::raw::Mat2f;
 
-impl ToRaw<Mat2f> for Matrix2x2 {
-    fn to_raw(&self) -> Mat2f {
-        self.data
+impl From<Mat2f> for Matrix2x2 {
+    fn from(mat2 : Mat2f) -> Self {
+        Self {
+            data: mat2,
+        }
+    }
+}
+
+impl From<Matrix2x2> for Mat2f {
+    fn from(matrix2x2: Matrix2x2) -> Mat2f {
+        matrix2x2.data
     }
 }

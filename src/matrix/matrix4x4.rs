@@ -205,10 +205,18 @@ impl Neg for Matrix4x4 {
     }
 }
 
-use crate::raw::{Mat4f,ToRaw};
+use crate::raw::Mat4f;
 
-impl ToRaw<Mat4f> for Matrix4x4 {
-    fn to_raw(&self) -> Mat4f {
-        self.data
+impl From<Mat4f> for Matrix4x4 {
+    fn from(mat4: Mat4f) -> Self {
+        Self {
+            data: mat4,
+        }
+    }
+}
+
+impl From<Matrix4x4> for Mat4f {
+    fn from(matrix4x4: Matrix4x4) -> Mat4f {
+        matrix4x4.data
     }
 }

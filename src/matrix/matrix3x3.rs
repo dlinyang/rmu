@@ -16,10 +16,6 @@ impl Matrix3x3 {
         }
     }
 
-    pub fn from(data: [[f32;3];3]) -> Self {
-        Self {data}
-    }
-
     pub fn trace(&self) -> f32 {
         self[0][0] + self[1][1] + self[2][2]
     }
@@ -187,10 +183,18 @@ impl Neg for Matrix3x3 {
     }
 }
 
-use crate::raw::{Mat3f,ToRaw};
+use crate::raw::Mat3f;
 
-impl ToRaw<Mat3f> for Matrix3x3 {
-    fn to_raw(&self) -> Mat3f {
-        self.data
+impl From<Mat3f> for Matrix3x3 {
+    fn from(mat3: Mat3f) -> Self {
+        Self {
+            data: mat3,
+        }
+    }
+}
+
+impl From<Matrix3x3> for Mat3f {
+    fn from(matrix3x3: Matrix3x3) -> Mat3f {
+        matrix3x3.data
     }
 }
