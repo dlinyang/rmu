@@ -1,10 +1,9 @@
-
-use std::ops::{Add,Sub,Mul,Div,Neg,Index,IndexMut};
-
 //generate a Rⁿ vector type
 #[macro_export]
 macro_rules! vector_define {
     ($name: ident, $dim: expr, $type: ty) => {
+        use std::ops::{Add,Sub,Mul,Div,Neg,Index,IndexMut};
+        
         #[derive(Debug,Copy,Clone,PartialEq)]
         pub struct $name {
             pub data: [$type; $dim],
