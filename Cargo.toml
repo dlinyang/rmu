@@ -3,6 +3,7 @@ name = "rmu"
 version = "0.1.0"
 authors = ["ydl"]
 edition = "2018"
+license = "GPLv2/Apache-2.0"
 
 [lib]
 name = "rmu"
