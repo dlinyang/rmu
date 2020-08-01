@@ -3,13 +3,15 @@
 
 use std::ops::{Mul,Sub};
 use std::cmp::PartialOrd;
-pub fn factorial<T: Copy + Clone + Mul<Output = T> + Sub<Output = T> + PartialOrd + From<u32>>(n: T) -> T {
+use num::{One,Zero};
+
+pub fn factorial<T: Copy + Clone + Mul<Output = T> + Sub<Output = T> + PartialOrd + Zero + One>(n: T) -> T {
     let mut result = n;
-    let mut i = n - From::from(1);
+    let mut i = n - One::one();
     
-    while n > From::from(0) {
+    while n > Zero::zero() {
         result = result * i;
-        i = i - From::from(1);
+        i = i - One::one();
     }
 
     result
