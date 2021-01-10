@@ -24,11 +24,11 @@ impl Matrix2x2 {
         self[0][0] * self[1][1] - self[0][1] * self[1][1]
     }
 
-    pub fn translation1(x: f32) -> Self {
-        use crate::matrix::transform::translation1;
+    pub fn translate1(x: f32) -> Self {
+        use crate::matrix::transform::translate1;
 
         Self {
-            data: translation1(x)
+            data: translate1(x)
         }
     }
 
@@ -36,11 +36,11 @@ impl Matrix2x2 {
         Self::new(x, y)
     }
 
-    pub fn rotation2(theta: f32) -> Self {
-        use crate::matrix::transform::rotation2;
+    pub fn rotate2(theta: f32) -> Self {
+        use crate::matrix::transform::rotate2;
         
         Self {
-            data: rotation2(theta)
+            data: rotate2(theta)
         }
     }
 }

@@ -30,11 +30,11 @@ impl Matrix4x4 {
         unimplemented!()
     }
 
-    pub fn translation3(x: f32, y: f32, z: f32) -> Self {
-        use crate::matrix::transform::translation3;
+    pub fn translate3(x: f32, y: f32, z: f32) -> Self {
+        use crate::matrix::transform::translate3;
 
         Self {
-            data: translation3(x, y, z)
+            data: translate3(x, y, z)
         }
     }
 }

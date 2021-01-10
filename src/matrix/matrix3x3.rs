@@ -26,11 +26,11 @@ impl Matrix3x3 {
         self[0][2] * (self[1][0] * self[2][1] - self[1][1] * self[2][0])
     }
 
-    pub fn translation2(x: f32, y: f32) -> Self {
-        use crate::matrix::transform::translation2;
+    pub fn translate2(x: f32, y: f32) -> Self {
+        use crate::matrix::transform::translate2;
 
         Self {
-            data: translation2(x, y)
+            data: translate2(x, y)
         }
     }
 
@@ -38,11 +38,11 @@ impl Matrix3x3 {
         Self::new(x, y, z)
     }
 
-    pub fn rotation3(x: f32, y: f32, z:f32) -> Self {
-        use crate::matrix::transform::rotation3;
+    pub fn rotate3(x: f32, y: f32, z:f32) -> Self {
+        use crate::matrix::transform::rotate3;
 
         Self {
-            data: rotation3(x, y, z)
+            data: rotate3(x, y, z)
         }
     }
 }
