@@ -1,5 +1,3 @@
-use std::ops::Add;
-
 #[macro_export]
 macro_rules! matrix_n {
     ($name:ident, $N: expr) => (

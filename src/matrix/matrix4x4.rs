@@ -29,6 +29,14 @@ impl Matrix4x4 {
     pub fn determinate(&self) -> f32 {
         unimplemented!()
     }
+
+    pub fn translation3(x: f32, y: f32, z: f32) -> Self {
+        use crate::matrix::transform::translation3;
+
+        Self {
+            data: translation3(x, y, z)
+        }
+    }
 }
 
 use crate::raw::ID4F;
@@ -218,5 +226,31 @@ impl From<Mat4f> for Matrix4x4 {
 impl From<Matrix4x4> for Mat4f {
     fn from(matrix4x4: Matrix4x4) -> Mat4f {
         matrix4x4.data
+    }
+}
+
+use crate::vector::Vector4;
+
+impl Mul<Matrix4x4> for Vector4 {
+    type Output = Vector4;
+
+    fn mul(self, rhs: Matrix4x4) -> Vector4 {
+        let a = Vector4::dot(self, Vector4::from(rhs[0]));
+        let b = Vector4::dot(self, Vector4::from(rhs[1]));
+        let c = Vector4::dot(self, Vector4::from(rhs[2]));
+        let d = Vector4::dot(self, Vector4::from(rhs[3]));
+        Vector4::new(a, b, c, d)
+    }
+}
+
+impl Mul<Vector4> for Matrix4x4 {
+    type Output = Vector4;
+
+    fn mul(self, rhs: Vector4) -> Vector4 {
+        let a = Vector4::dot(Vector4::from(self[0]), rhs);
+        let b = Vector4::dot(Vector4::from(self[1]), rhs);
+        let c = Vector4::dot(Vector4::from(self[2]), rhs);
+        let d = Vector4::dot(Vector4::from(self[3]), rhs);
+        Vector4::new(a, b, c, d)
     }
 }

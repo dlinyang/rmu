@@ -6,6 +6,7 @@ pub struct Matrix2x2 {
     pub data: [[f32;2];2],
 }
 
+
 impl Matrix2x2 {
     /// get a new 2x2 matrix with a00 a11
     pub fn new(a00: f32, a11: f32) -> Self {
@@ -21,6 +22,26 @@ impl Matrix2x2 {
 
     pub fn determinate(&self) -> f32 {
         self[0][0] * self[1][1] - self[0][1] * self[1][1]
+    }
+
+    pub fn translation1(x: f32) -> Self {
+        use crate::matrix::transform::translation1;
+
+        Self {
+            data: translation1(x)
+        }
+    }
+
+    pub fn scale2(x: f32, y: f32) -> Self {
+        Self::new(x, y)
+    }
+
+    pub fn rotation2(theta: f32) -> Self {
+        use crate::matrix::transform::rotation2;
+        
+        Self {
+            data: rotation2(theta)
+        }
     }
 }
 
@@ -177,5 +198,27 @@ impl From<Mat2f> for Matrix2x2 {
 impl From<Matrix2x2> for Mat2f {
     fn from(matrix2x2: Matrix2x2) -> Mat2f {
         matrix2x2.data
+    }
+}
+
+use crate::vector::Vector2;
+
+impl Mul<Matrix2x2> for Vector2 {
+    type Output = Vector2;
+
+    fn mul(self, rhs: Matrix2x2) -> Vector2 {
+        let a = Vector2::dot(self, Vector2::from(rhs[0]));
+        let b = Vector2::dot(self, Vector2::from(rhs[1]));
+        Vector2::new(a, b)
+    }
+}
+
+impl Mul<Vector2> for Matrix2x2 {
+    type Output = Vector2;
+
+    fn mul(self, rhs: Vector2) -> Vector2 {
+        let a = Vector2::dot(Vector2::from(self[0]), rhs);
+        let b = Vector2::dot(Vector2::from(self[1]), rhs);
+        Vector2::new(a, b)
     }
 }

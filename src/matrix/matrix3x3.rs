@@ -25,6 +25,26 @@ impl Matrix3x3 {
         -self[0][1] * (self[1][0] * self[2][2] - self[1][2] * self[2][0]) + 
         self[0][2] * (self[1][0] * self[2][1] - self[1][1] * self[2][0])
     }
+
+    pub fn translation2(x: f32, y: f32) -> Self {
+        use crate::matrix::transform::translation2;
+
+        Self {
+            data: translation2(x, y)
+        }
+    }
+
+    pub fn scale3(x: f32, y: f32, z: f32) -> Self {
+        Self::new(x, y, z)
+    }
+
+    pub fn rotation3(x: f32, y: f32, z:f32) -> Self {
+        use crate::matrix::transform::rotation3;
+
+        Self {
+            data: rotation3(x, y, z)
+        }
+    }
 }
 
 use crate::raw::ID3F;
@@ -196,5 +216,29 @@ impl From<Mat3f> for Matrix3x3 {
 impl From<Matrix3x3> for Mat3f {
     fn from(matrix3x3: Matrix3x3) -> Mat3f {
         matrix3x3.data
+    }
+}
+
+use crate::vector::Vector3;
+
+impl Mul<Matrix3x3> for Vector3 {
+    type Output = Vector3;
+
+    fn mul(self, rhs: Matrix3x3) -> Vector3 {
+        let a = Vector3::dot(self, Vector3::from(rhs[0]));
+        let b = Vector3::dot(self, Vector3::from(rhs[1]));
+        let c = Vector3::dot(self, Vector3::from(rhs[2]));
+        Vector3::new(a, b, c)
+    }
+}
+
+impl Mul<Vector3> for Matrix3x3 {
+    type Output = Vector3;
+
+    fn mul(self, rhs: Vector3) -> Vector3 {
+        let a = Vector3::dot(Vector3::from(self[0]), rhs);
+        let b = Vector3::dot(Vector3::from(self[1]), rhs);
+        let c = Vector3::dot(Vector3::from(self[2]), rhs);
+        Vector3::new(a, b, c)
     }
 }
