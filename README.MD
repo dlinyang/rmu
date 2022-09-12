@@ -1,10 +1,10 @@
 # RMU: Rust Math Utility
 
-rmu is a easy to use math utility.
+rmu is a easy to use math utility. write for practise and fun.
 
 ## component:
 
-- raw type
+- raw data type
 - vector 
 - matrix
 - geometry
